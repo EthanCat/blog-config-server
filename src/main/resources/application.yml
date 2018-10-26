@@ -1,0 +1,25 @@
+server:
+  port: 9100
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/EthanCat/blog-config-repository
+          username: EthanCat
+          password: GHEthan1204
+          search-paths: /**
+          default-label: master
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://peer1:9000/eureka/
+    healthcheck:
+      enabled: true
